@@ -1,16 +1,16 @@
-#missing colon
+#missing colon: /foo
 file { '/foo'
   ensure => file,
   mode   => '1777',
 }
 
-#missing comma
+#missing comma: ensure
 user { 'bar':
   ensure => present
   uid    => 006,
 }
 
-#typo attribute
+#attribute typo: esure
 group { 'baz':
   esure => absent,
   gid   => 007,
@@ -18,6 +18,6 @@ group { 'baz':
 
 #ensure compatible with linter-puppet-lint
 exec { 'make me a pizza':
-  command  => '/bin/mkpizza',
+  command  => '/bin/mkpizza --great /oven',
   onlyif   => '/bin/ls /hungry',
 }
