@@ -10,10 +10,10 @@ user { 'bar':
   uid    => 006,
 }
 
-#attribute typo: esure
+#missing > in =>: ensure
 group { 'baz':
-  esure => absent,
-  gid   => 007,
+  ensure = absent,
+  gid    => 007,
 }
 
 #ensure compatible with linter-puppet-lint
