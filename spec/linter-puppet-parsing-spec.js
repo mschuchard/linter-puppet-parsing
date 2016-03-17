@@ -15,7 +15,7 @@ describe('The Puppet Parser provider for Linter', () => {
     });
   });
 
-  describe('checks a file with one issue and', () => {
+  describe('checks a file with multiple issues and', () => {
     let editor = null;
     const badFile = path.join(__dirname, 'fixtures', 'test.pp');
     beforeEach(() => {
@@ -36,18 +36,17 @@ describe('The Puppet Parser provider for Linter', () => {
 
     it('verifies the first message', () => {
       waitsForPromise(() => {
-        const messageText = "Syntax error at 'ensure'";
         return lint(editor).then(messages => {
           expect(messages[0].type).toBeDefined();
           expect(messages[0].type).toEqual('Error');
           expect(messages[0].text).toBeDefined();
-          expect(messages[0].text).toEqual(messageText);
+          expect(messages[0].text).toEqual("Syntax error at 'ensure'");
           expect(messages[0].filePath).toBeDefined();
           expect(messages[0].filePath).toMatch(/.+test\.pp$/);
           expect(messages[0].range).toBeDefined();
           expect(messages[0].range.length).toBeDefined();
           expect(messages[0].range.length).toEqual(2);
-          expect(messages[0].range).toEqual([[0, 0], [0, 32]]);
+          expect(messages[0].range).toEqual([[3, 3], [3, 4]]);
         });
       });
     });
@@ -72,31 +71,29 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
 
-    it('verifies the first message', () => {
+    it('verifies the messages', () => {
       waitsForPromise(() => {
-        const messageTextOne = 'This Variable has no effect. A value was produced and then forgotten (one or more preceding expressions may have the wrong form)';
-        const messageTextTwo = "Illegal variable name, The given name '' does not conform to the naming rule /^((::)?[a-z]\w*)*((::)?[a-z_]\w*)$/"
         return lint(editor).then(messages => {
           expect(messages[0].type).toBeDefined();
           expect(messages[0].type).toEqual('Error');
           expect(messages[0].text).toBeDefined();
-          expect(messages[0].text).toEqual(messageText);
+          expect(messages[0].text).toEqual('This Variable has no effect. A value was produced and then forgotten (one or more preceding expressions may have the wrong form)');
           expect(messages[0].filePath).toBeDefined();
           expect(messages[0].filePath).toMatch(/.+test_three\.pp$/);
           expect(messages[0].range).toBeDefined();
           expect(messages[0].range.length).toBeDefined();
           expect(messages[0].range.length).toEqual(2);
-          expect(messages[0].range).toEqual([[0, 0], [0, 32]]);
+          expect(messages[0].range).toEqual([[3, 20], [3, 21]]);
           expect(messages[1].type).toBeDefined();
           expect(messages[1].type).toEqual('Error');
           expect(messages[1].text).toBeDefined();
-          expect(messages[1].text).toEqual(messageText);
+          expect(messages[1].text).toEqual("Illegal variable name, The given name '' does not conform to the naming rule /^((::)?[a-z]\w*)*((::)?[a-z_]\w*)$/");
           expect(messages[1].filePath).toBeDefined();
           expect(messages[1].filePath).toMatch(/.+test_three\.pp$/);
           expect(messages[1].range).toBeDefined();
           expect(messages[1].range.length).toBeDefined();
           expect(messages[1].range.length).toEqual(2);
-          expect(messages[1].range).toEqual([[0, 0], [0, 32]]);
+          expect(messages[1].range).toEqual([[3, 20], [3, 21]]);
         });
       });
     });
