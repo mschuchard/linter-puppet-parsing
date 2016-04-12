@@ -15,7 +15,7 @@ describe('The Puppet Parser provider for Linter', () => {
     });
   });
 
-  describe('checks a file with multiple issues and', () => {
+  describe('checks a file with multiple issues on separate lines and', () => {
     let editor = null;
     const badFile = path.join(__dirname, 'fixtures', 'test.pp');
     beforeEach(() => {
@@ -26,10 +26,10 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
 
-    it('finds at least one message', () => {
+    it('finds the first message', () => {
       waitsForPromise(() =>
         lint(editor).then(messages => {
-          expect(messages.length).toBeGreaterThan(0);
+          expect(messages.length).toEqual(1);
         })
       );
     });
@@ -52,7 +52,7 @@ describe('The Puppet Parser provider for Linter', () => {
     });
   });
 
-  describe('checks a file with two issues and', () => {
+  describe('checks a file with two issues on one line and', () => {
     let editor = null;
     const badFile = path.join(__dirname, 'fixtures', 'test_three.pp');
     beforeEach(() => {
@@ -63,10 +63,10 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
 
-    it('finds more than one message', () => {
+    it('finds both messages', () => {
       waitsForPromise(() =>
         lint(editor).then(messages => {
-          expect(messages.length).toBeGreaterThan(1);
+          expect(messages.length).toEqual(2);
         })
       );
     });
@@ -94,6 +94,43 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[1].range.length).toBeDefined();
           expect(messages[1].range.length).toEqual(2);
           expect(messages[1].range).toEqual([[3, 20], [3, 21]]);
+        });
+      });
+    });
+  });
+
+  describe('checks a file with an issue with no line or col information and', () => {
+    let editor = null;
+    const badFile = path.join(__dirname, 'fixtures', 'test_four.pp');
+    beforeEach(() => {
+      waitsForPromise(() =>
+        atom.workspace.open(badFile).then(openEditor => {
+          editor = openEditor;
+        })
+      );
+    });
+
+    it('finds one message', () => {
+      waitsForPromise(() =>
+        lint(editor).then(messages => {
+          expect(messages.length).toEqual(1);
+        })
+      );
+    });
+
+    it('verifies the only message', () => {
+      waitsForPromise(() => {
+        return lint(editor).then(messages => {
+          expect(messages[0].type).toBeDefined();
+          expect(messages[0].type).toEqual('Error');
+          expect(messages[0].text).toBeDefined();
+          expect(messages[0].text).toEqual("Syntax error at end of file");
+          expect(messages[0].filePath).toBeDefined();
+          expect(messages[0].filePath).toMatch(/.+test_four\.pp$/);
+          expect(messages[0].range).toBeDefined();
+          expect(messages[0].range.length).toBeDefined();
+          expect(messages[0].range.length).toEqual(2);
+          expect(messages[0].range).toEqual([[3, 3], [3, 4]]);
         });
       });
     });
