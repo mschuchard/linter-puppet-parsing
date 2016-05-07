@@ -136,6 +136,53 @@ describe('The Puppet Parser provider for Linter', () => {
     });
   });
 
+  describe('checks a file with warnings and', () => {
+    let editor = null;
+    const badFile = path.join(__dirname, 'fixtures', 'test_five.pp');
+    beforeEach(() => {
+      waitsForPromise(() =>
+        atom.workspace.open(badFile).then(openEditor => {
+          editor = openEditor;
+        })
+      );
+    });
+
+    it('finds the both messages', () => {
+      waitsForPromise(() =>
+        lint(editor).then(messages => {
+          expect(messages.length).toEqual(2);
+        })
+      );
+    });
+
+    it('verifies the first message', () => {
+      waitsForPromise(() => {
+        return lint(editor).then(messages => {
+          expect(messages[0].type).toBeDefined();
+          expect(messages[0].type).toEqual('Warning');
+          expect(messages[0].text).toBeDefined();
+          expect(messages[0].text).toEqual("Unrecognized escape sequence '\['");
+          expect(messages[0].filePath).toBeDefined();
+          expect(messages[0].filePath).toMatch(/.+test_five\.pp$/);
+          expect(messages[0].range).toBeDefined();
+          expect(messages[0].range.length).toBeDefined();
+          expect(messages[0].range.length).toEqual(2);
+          expect(messages[0].range).toEqual([[3, 3], [3, 4]]);
+          expect(messages[1].type).toBeDefined();
+          expect(messages[1].type).toEqual('Warning');
+          expect(messages[1].text).toBeDefined();
+          expect(messages[1].text).toEqual("Unrecognized escape sequence '\['");
+          expect(messages[1].filePath).toBeDefined();
+          expect(messages[1].filePath).toMatch(/.+test_five\.pp$/);
+          expect(messages[1].range).toBeDefined();
+          expect(messages[1].range.length).toBeDefined();
+          expect(messages[1].range.length).toEqual(2);
+          expect(messages[1].range).toEqual([[3, 3], [3, 4]]);
+        });
+      });
+    });
+  });
+
   it('finds nothing wrong with a valid file', () => {
     waitsForPromise(() => {
       const goodFile = path.join(__dirname, 'fixtures', 'test_two.pp');
