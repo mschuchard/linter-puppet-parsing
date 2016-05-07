@@ -1,3 +1,10 @@
+### 1.0.3
+- Updated atom-linter dependencies.
+- Fixed issue where column of error was not being captured and displayed for `Puppet >= 4`.
+- Adding support for unusual 'syntax error at end of file' error message.
+- Now differentiating between errors and warnings.
+- Very slight code optimization.
+
 ### 1.0.2
 - Minor code cleanup and optimization.
 - Updated atom-linter dependencies.
