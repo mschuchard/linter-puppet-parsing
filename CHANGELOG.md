@@ -1,3 +1,9 @@
+### Next (Roadmap)
+- Updated atom-linter dependency.
+- Added severity key.
+- travisci
+- jasmine babel
+
 ### 1.0.3
 - Updated atom-linter dependencies.
 - Fixed issue where column of error was not being captured and displayed for `Puppet >= 4`.
