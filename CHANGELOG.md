@@ -1,8 +1,10 @@
 ### Next (Roadmap)
-- Updated atom-linter dependency.
-- Added severity key.
 - travisci
 - jasmine babel
+
+### 1.0.4
+- Updated atom-linter dependency.
+- Added severity key.
 
 ### 1.0.3
 - Updated atom-linter dependencies.
