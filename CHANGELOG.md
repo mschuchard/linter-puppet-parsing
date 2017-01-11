@@ -1,6 +1,8 @@
 ### Next (Roadmap)
+- Removed range 1 where unnecessary.
 - travisci
 - jasmine babel
+- is the logic for missing col info working
 
 ### 1.0.4
 - Updated atom-linter dependency.
