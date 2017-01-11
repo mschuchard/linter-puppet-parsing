@@ -1,2 +1,2 @@
-#test for warnings
+# test for warnings
 notify { 'warning': message => "\[\]" }

@@ -10,14 +10,14 @@ describe('The Puppet Parser provider for Linter', () => {
     waitsForPromise(() => {
       atom.packages.activatePackage('linter-puppet-parsing');
       return atom.packages.activatePackage('language-puppet').then(() =>
-        atom.workspace.open(path.join(__dirname, 'fixtures', 'test_two.pp'))
+        atom.workspace.open(path.join(__dirname, 'fixtures', 'clean.pp'))
       );
     });
   });
 
   describe('checks a file with multiple issues on separate lines and', () => {
     let editor = null;
-    const badFile = path.join(__dirname, 'fixtures', 'test.pp');
+    const badFile = path.join(__dirname, 'fixtures', 'errors_line_col.pp');
     beforeEach(() => {
       waitsForPromise(() =>
         atom.workspace.open(badFile).then(openEditor => {
@@ -42,7 +42,7 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[0].text).toBeDefined();
           expect(messages[0].text).toEqual("Syntax error at 'ensure'");
           expect(messages[0].filePath).toBeDefined();
-          expect(messages[0].filePath).toMatch(/.+test\.pp$/);
+          expect(messages[0].filePath).toMatch(/.+errors_line_col\.pp$/);
           expect(messages[0].range).toBeDefined();
           expect(messages[0].range.length).toBeDefined();
           expect(messages[0].range.length).toEqual(2);
@@ -54,7 +54,7 @@ describe('The Puppet Parser provider for Linter', () => {
 
   describe('checks a file with two issues on one line and', () => {
     let editor = null;
-    const badFile = path.join(__dirname, 'fixtures', 'test_three.pp');
+    const badFile = path.join(__dirname, 'fixtures', 'multi_errors.pp');
     beforeEach(() => {
       waitsForPromise(() =>
         atom.workspace.open(badFile).then(openEditor => {
@@ -79,7 +79,7 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[0].text).toBeDefined();
           expect(messages[0].text).toEqual('This Variable has no effect. A value was produced and then forgotten (one or more preceding expressions may have the wrong form)');
           expect(messages[0].filePath).toBeDefined();
-          expect(messages[0].filePath).toMatch(/.+test_three\.pp$/);
+          expect(messages[0].filePath).toMatch(/.+multi_errors\.pp$/);
           expect(messages[0].range).toBeDefined();
           expect(messages[0].range.length).toBeDefined();
           expect(messages[0].range.length).toEqual(2);
@@ -89,7 +89,7 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[1].text).toBeDefined();
           expect(messages[1].text).toEqual("Illegal variable name, The given name '' does not conform to the naming rule /^((::)?[a-z]\w*)*((::)?[a-z_]\w*)$/");
           expect(messages[1].filePath).toBeDefined();
-          expect(messages[1].filePath).toMatch(/.+test_three\.pp$/);
+          expect(messages[1].filePath).toMatch(/.+multi_errors\.pp$/);
           expect(messages[1].range).toBeDefined();
           expect(messages[1].range.length).toBeDefined();
           expect(messages[1].range.length).toEqual(2);
@@ -101,7 +101,7 @@ describe('The Puppet Parser provider for Linter', () => {
 
   describe('checks a file with an issue with no line or col information and', () => {
     let editor = null;
-    const badFile = path.join(__dirname, 'fixtures', 'test_four.pp');
+    const badFile = path.join(__dirname, 'fixtures', 'error_eof.pp');
     beforeEach(() => {
       waitsForPromise(() =>
         atom.workspace.open(badFile).then(openEditor => {
@@ -126,7 +126,7 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[0].text).toBeDefined();
           expect(messages[0].text).toEqual("Syntax error at end of file");
           expect(messages[0].filePath).toBeDefined();
-          expect(messages[0].filePath).toMatch(/.+test_four\.pp$/);
+          expect(messages[0].filePath).toMatch(/.+error_eof\.pp$/);
           expect(messages[0].range).toBeDefined();
           expect(messages[0].range.length).toBeDefined();
           expect(messages[0].range.length).toEqual(2);
@@ -138,7 +138,7 @@ describe('The Puppet Parser provider for Linter', () => {
 
   describe('checks a file with warnings and', () => {
     let editor = null;
-    const badFile = path.join(__dirname, 'fixtures', 'test_five.pp');
+    const badFile = path.join(__dirname, 'fixtures', 'warnings.pp');
     beforeEach(() => {
       waitsForPromise(() =>
         atom.workspace.open(badFile).then(openEditor => {
@@ -163,7 +163,7 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[0].text).toBeDefined();
           expect(messages[0].text).toEqual("Unrecognized escape sequence '\['");
           expect(messages[0].filePath).toBeDefined();
-          expect(messages[0].filePath).toMatch(/.+test_five\.pp$/);
+          expect(messages[0].filePath).toMatch(/.+warnings\.pp$/);
           expect(messages[0].range).toBeDefined();
           expect(messages[0].range.length).toBeDefined();
           expect(messages[0].range.length).toEqual(2);
@@ -173,7 +173,7 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[1].text).toBeDefined();
           expect(messages[1].text).toEqual("Unrecognized escape sequence '\['");
           expect(messages[1].filePath).toBeDefined();
-          expect(messages[1].filePath).toMatch(/.+test_five\.pp$/);
+          expect(messages[1].filePath).toMatch(/.+warnings\.pp$/);
           expect(messages[1].range).toBeDefined();
           expect(messages[1].range.length).toBeDefined();
           expect(messages[1].range.length).toEqual(2);
@@ -185,7 +185,7 @@ describe('The Puppet Parser provider for Linter', () => {
 
   it('finds nothing wrong with a valid file', () => {
     waitsForPromise(() => {
-      const goodFile = path.join(__dirname, 'fixtures', 'test_two.pp');
+      const goodFile = path.join(__dirname, 'fixtures', 'clean.pp');
       return atom.workspace.open(goodFile).then(editor =>
         lint(editor).then(messages => {
           expect(messages.length).toEqual(0);
