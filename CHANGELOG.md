@@ -1,8 +1,8 @@
 ### Next (Roadmap)
 - Removed range 1 where unnecessary.
+- Fixed support for legacy Puppet parser not displaying column information.
 - travisci
 - jasmine babel
-- is the logic for missing col info working
 
 ### 1.0.4
 - Updated atom-linter dependency.
