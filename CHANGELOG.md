@@ -1,8 +1,11 @@
 ### Next (Roadmap)
-- Removed range 1 where unnecessary.
-- Fixed support for legacy Puppet parser not displaying column information.
 - travisci
 - jasmine babel
+- linter 2 api
+
+### 1.0.5
+- Removed range 1 where unnecessary.
+- Fixed support for legacy Puppet parser not displaying column information.
 
 ### 1.0.4
 - Updated atom-linter dependency.
