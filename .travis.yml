@@ -1,0 +1,30 @@
+# setup environment
+sudo: false
+language: ruby
+cache: bundler
+
+notifications:
+  email: false
+
+git:
+  depth: 5
+
+# setup tests
+env:
+  global:
+    - APM_TEST_PACKAGES="language-puppet"
+    - ATOM_LINT_WITH_BUNDLED_NODE="true"
+
+matrix:
+  include:
+  - os: linux
+    rvm: 2.1
+  - os: linux
+    rvm: 2.1
+    env: ATOM_CHANNEL=beta
+
+# execute tests
+before_install: gem update --no-document bundler
+install: bundle install puppet --retry=3
+before_script: puppet --version
+script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
