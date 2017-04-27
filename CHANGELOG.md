@@ -1,7 +1,6 @@
 ### Next (Roadmap)
-- travisci
+- Switched to using Linter v2 API.
 - jasmine babel
-- linter 2 api
 
 ### 1.0.5
 - Removed range 1 where unnecessary.
