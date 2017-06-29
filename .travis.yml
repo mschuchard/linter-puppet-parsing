@@ -1,4 +1,5 @@
 # setup environment
+dist: trusty
 sudo: false
 language: ruby
 cache: bundler
@@ -18,9 +19,9 @@ env:
 matrix:
   include:
   - os: linux
-    rvm: 2.1
+    rvm: 2.2.7
   - os: linux
-    rvm: 2.1
+    rvm: 2.2.7
     env: ATOM_CHANNEL=beta
 
 # execute tests
