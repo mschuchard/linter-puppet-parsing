@@ -1,5 +1,4 @@
 ### Next (Roadmap)
-- jasmine babel
 
 ### 1.1.0
 - Switched to using Linter v2 API.

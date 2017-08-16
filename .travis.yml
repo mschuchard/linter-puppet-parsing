@@ -32,6 +32,6 @@ matrix:
     env: ATOM_CHANNEL=beta
 
 # execute tests
-install: gem install --no-document -v $VERSION puppet
+install: gem install --no-document -v '$VERSION' puppet
 before_script: puppet --version
 script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'

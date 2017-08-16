@@ -15,7 +15,7 @@ describe('The Puppet Parser provider for Linter', () => {
     });
   });
 
-  describe('checks a file with multiple issues on separate lines and', () => {
+  describe('checks a file with multiple errors on separate lines and', () => {
     let editor = null;
     const badFile = path.join(__dirname, 'fixtures', 'errors_line_col.pp');
     beforeEach(() => {
@@ -137,7 +137,7 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
 
-    it('finds the both messages', () => {
+    it('finds both messages', () => {
       waitsForPromise(() =>
         lint(editor).then(messages => {
           expect(messages.length).toEqual(2);
@@ -164,6 +164,49 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[1].location.file).toMatch(/.+warnings\.pp$/);
           expect(messages[1].location.position).toBeDefined();
           expect(messages[1].location.position).toEqual([[1, 37], [1, 38]]);
+        });
+      });
+    });
+  });
+
+  describe('checks a file with warnings on multiple lines and', () => {
+    let editor = null;
+    const badFile = path.join(__dirname, 'fixtures', 'multi_warnings.pp');
+    beforeEach(() => {
+      waitsForPromise(() =>
+        atom.workspace.open(badFile).then(openEditor => {
+          editor = openEditor;
+        })
+      );
+    });
+
+    it('finds both messages', () => {
+      waitsForPromise(() =>
+        lint(editor).then(messages => {
+          expect(messages.length).toEqual(2);
+        })
+      );
+    });
+
+    it('verifies the first message', () => {
+      waitsForPromise(() => {
+        return lint(editor).then(messages => {
+          expect(messages[0].severity).toBeDefined();
+          expect(messages[0].severity).toEqual('warning');
+          expect(messages[0].excerpt).toBeDefined();
+          expect(messages[0].excerpt).toEqual("The key '/etc/foo' is declared more than once");
+          expect(messages[0].location.file).toBeDefined();
+          expect(messages[0].location.file).toMatch(/.+multi_warnings\.pp$/);
+          expect(messages[0].location.position).toBeDefined();
+          expect(messages[0].location.position).toEqual([[1, 25], [1, 26]]);
+          expect(messages[1].severity).toBeDefined();
+          expect(messages[1].severity).toEqual('warning');
+          expect(messages[1].excerpt).toBeDefined();
+          expect(messages[1].excerpt).toEqual("The key '/etc/foo' is declared more than once");
+          expect(messages[1].location.file).toBeDefined();
+          expect(messages[1].location.file).toMatch(/.+multi_warnings\.pp$/);
+          expect(messages[1].location.position).toBeDefined();
+          expect(messages[1].location.position).toEqual([[2, 25], [2, 26]]);
         });
       });
     });
