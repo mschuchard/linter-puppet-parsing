@@ -26,7 +26,7 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
 
-    it('finds the first message', () => {
+    it('finds only one message', () => {
       waitsForPromise(() =>
         lint(editor).then(messages => {
           expect(messages.length).toEqual(1);
@@ -34,7 +34,7 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
 
-    it('verifies the first message', () => {
+    it('verifies the message', () => {
       waitsForPromise(() => {
         return lint(editor).then(messages => {
           expect(messages[0].severity).toBeDefined();
@@ -145,7 +145,7 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
 
-    it('verifies the first message', () => {
+    it('verifies the messages', () => {
       waitsForPromise(() => {
         return lint(editor).then(messages => {
           expect(messages[0].severity).toBeDefined();
@@ -188,7 +188,7 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
 
-    it('verifies the first message', () => {
+    it('verifies the messages', () => {
       waitsForPromise(() => {
         return lint(editor).then(messages => {
           expect(messages[0].severity).toBeDefined();

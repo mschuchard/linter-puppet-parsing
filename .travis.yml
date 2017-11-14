@@ -19,19 +19,19 @@ env:
 matrix:
   include:
   - os: linux
-    rvm: 2.2.7
-    env: VERSION='~> 3.8'
+    rvm: 2.2.8
+    env: VERSION="'~> 3.8'"
   - os: linux
-    rvm: 2.2.7
-    env: VERSION='~> 4.10'
+    rvm: 2.2.8
+    env: VERSION="'~> 4.10'"
   - os: linux
-    rvm: 2.2.7
-    env: VERSION='~> 5.0'
+    rvm: 2.2.8
+    env: VERSION="'~> 5.0'"
   - os: linux
-    rvm: 2.2.7
+    rvm: 2.2.8
     env: ATOM_CHANNEL=beta
 
 # execute tests
-install: gem install --no-document -v '$VERSION' puppet
+install: gem install --no-document -v $VERSION puppet
 before_script: puppet --version
 script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
