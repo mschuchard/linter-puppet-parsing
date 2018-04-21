@@ -19,7 +19,7 @@ env:
 matrix:
   include:
   - os: linux
-    rvm: 2.2.10
+    rvm: 2.1.10
     env: VERSION='~> 3.8.7'
   - os: linux
     rvm: 2.2.10
