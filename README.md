@@ -11,6 +11,6 @@ Image displays example of simultaneous use of `Linter-Puppet-Parsing` with `Lint
 The `Puppet` or `Puppet Enterprise` Agent is required to be installed (preferably from a package or a gem) before using this. The `Linter` and `Language-Puppet` Atom packages are also required.
 
 ### Usage
-- Avoid specifying arguments (e.g. ``--debug`) that greatly affect the formatting of the parser output.  These will cause issues.
-- The `Puppet` parser is slower than most executables used for linting and its errors may require several seconds after saving to display.
+- Avoid specifying arguments (e.g. --debug`) that greatly affect the formatting of the parser output.  These will cause issues.
+- The `Puppet` parser is slower than most linter executables and its errors may require a few seconds after saving to display.
 - The `Puppet` parser only throws errors for the first line of errors it encounters in a manifest so this linter only displays one line of errors at a time. However, multiple lines of warnings will be displayed.

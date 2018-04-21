@@ -1,4 +1,9 @@
 ### Next (Roadmap)
+- drop puppet 3 support
+
+### 1.1.1
+- Capture line/col messages for new Puppet >= 5.3 parser validator output.
+- Capture eof messages for new Puppet >= 5.5 parser validator output.
 
 ### 1.1.0
 - Switched to using Linter v2 API.
