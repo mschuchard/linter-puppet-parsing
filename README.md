@@ -14,3 +14,4 @@ The `Puppet` or `Puppet Enterprise` Agent is required to be installed (preferabl
 - Avoid specifying arguments (e.g. --debug`) that greatly affect the formatting of the parser output.  These will cause issues.
 - The `Puppet` parser is slower than most linter executables and its errors may require a few seconds after saving to display.
 - The `Puppet` parser only throws errors for the first line of errors it encounters in a manifest so this linter only displays one line of errors at a time. However, multiple lines of warnings will be displayed.
+- On Windows, you have to specify the whole path to the puppet executable, even if it is in PATH, e.g.: C:\Program Files\Puppet Labs\Puppet\bin\puppet
