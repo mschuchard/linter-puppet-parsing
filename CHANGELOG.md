@@ -1,6 +1,7 @@
 ### Next (Roadmap)
 - Drop support for Puppet 3.
 - Ensure support for Puppet 6.
+- Updated `atom-linter` dependency.
 
 ### 1.1.1
 - Capture line/col messages for new Puppet >= 5.4 parser validator output.
@@ -15,11 +16,11 @@
 - Fixed support for legacy Puppet parser not displaying column information.
 
 ### 1.0.4
-- Updated atom-linter dependency.
+- Updated `atom-linter` dependency.
 - Added severity key.
 
 ### 1.0.3
-- Updated atom-linter dependencies.
+- Updated `atom-linter` dependencies.
 - Fixed issue where column of error was not being captured and displayed for `Puppet >= 4`.
 - Adding support for unusual 'syntax error at end of file' error message.
 - Now differentiating between errors and warnings.
@@ -27,7 +28,7 @@
 
 ### 1.0.2
 - Minor code cleanup and optimization.
-- Updated atom-linter dependencies.
+- Updated `atom-linter` dependencies.
 - Fixed issue with different output style of Puppet 4 parser for some types of errors not matching regexp.
 
 ### 1.0.1
