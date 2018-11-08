@@ -23,13 +23,13 @@ matrix:
     env: VERSION='~> 4.10.12'
   - os: linux
     rvm: 2.2.10
-    env: VERSION='~> 5.5.6'
+    env: VERSION='~> 5.5.8'
   - os: linux
     rvm: 2.3.7
-    env: VERSION='~> 6.0.1'
+    env: VERSION='~> 6.0.4'
   - os: linux
     rvm: 2.3.7
-    env: "ATOM_CHANNEL=beta VERSION='~> 5.5.6'"
+    env: "ATOM_CHANNEL=beta VERSION='~> 5.5.8'"
 
 # execute tests
 install: gem install --no-document -v "$VERSION" puppet
