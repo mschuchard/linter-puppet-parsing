@@ -1,4 +1,6 @@
 ### Next (Roadmap)
+
+### 1.1.2
 - Drop support for Puppet 3.
 - Ensure support for Puppet 6.
 - Updated `atom-linter` dependency.
