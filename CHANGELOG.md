@@ -1,4 +1,5 @@
 ### Next (Roadmap)
+- Display error marker at last line of file for EOF errors.
 
 ### 1.1.2
 - Drop support for Puppet 3.

@@ -119,6 +119,8 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[0].severity).toEqual('error');
           expect(messages[0].excerpt).toBeDefined();
           expect(messages[0].excerpt).toEqual("Syntax error at end of file.");
+          expect(messages[0].location.position.length).toBeDefined();
+          expect(messages[0].location.position).toEqual([[3, 0], [3, 1]]);
           expect(messages[0].location.file).toBeDefined();
           expect(messages[0].location.file).toMatch(/.+error_eof\.pp$/);
         });
