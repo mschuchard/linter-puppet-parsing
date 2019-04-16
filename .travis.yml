@@ -23,10 +23,10 @@ matrix:
     env: VERSION='~> 4.10.13'
   - os: linux
     rvm: 2.3
-    env: VERSION='~> 5.5.8'
+    env: VERSION='~> 5.5.13'
   - os: linux
     rvm: 2.5
-    env: VERSION='~> 6.1.0'
+    env: VERSION='~> 6.4.1'
   - os: linux
     rvm: 2.3
     env: "ATOM_CHANNEL=beta VERSION='~> 5.5.8'"
