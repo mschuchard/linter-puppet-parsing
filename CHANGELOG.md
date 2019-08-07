@@ -1,4 +1,4 @@
-### Next (Roadmap)
+### 1.1.3
 - Display error marker at last line of file for EOF errors.
 
 ### 1.1.2
