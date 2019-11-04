@@ -1,6 +1,6 @@
 ![Preview](https://raw.githubusercontent.com/mschuchard/linter-puppet-parsing/master/linter_puppet_parsing.png)
 
-Image displays example of simultaneous use of `Linter-Puppet-Parsing` with `Linter-Puppet-Lint`.
+Image displays example of simultaneous use of Linter-Puppet-Parsing with Linter-Puppet-Lint.
 
 ### Linter-Puppet-Parsing
 [![Build Status](https://travis-ci.org/mschuchard/linter-puppet-parsing.svg?branch=master)](https://travis-ci.org/mschuchard/linter-puppet-parsing)
