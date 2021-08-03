@@ -3,7 +3,7 @@
 Image displays example of simultaneous use of Linter-Puppet-Parsing with Linter-Puppet-Lint.
 
 ### Linter-Puppet-Parsing
-[![Build Status](https://travis-ci.org/mschuchard/linter-puppet-parsing.svg?branch=master)](https://travis-ci.org/mschuchard/linter-puppet-parsing)
+[![Build Status](https://travis-ci.com/mschuchard/linter-puppet-parsing.svg?branch=master)](https://travis-ci.com/mschuchard/linter-puppet-parsing)
 
 Linter-Puppet-Parsing aims to provide functional and robust `puppet parser validate` linting functionality in Atom.
 
