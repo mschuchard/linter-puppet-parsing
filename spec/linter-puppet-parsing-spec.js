@@ -64,7 +64,7 @@ describe('The Puppet Parser provider for Linter', () => {
     it('finds both messages', () => {
       waitsForPromise(() =>
         lint(editor).then(messages => {
-          expect(messages.length).toEqual(2);
+          expect(messages.length).toEqual(3);
         })
       );
     });
@@ -73,21 +73,29 @@ describe('The Puppet Parser provider for Linter', () => {
       waitsForPromise(() => {
         return lint(editor).then(messages => {
           expect(messages[0].severity).toBeDefined();
-          expect(messages[0].severity).toEqual('error');
+          expect(messages[0].severity).toEqual('warning');
           expect(messages[0].excerpt).toBeDefined();
-          expect(messages[0].excerpt).toEqual('This Variable has no effect. A value was produced and then forgotten (one or more preceding expressions may have the wrong form)');
+          expect(messages[0].excerpt).toEqual('Language validation logged 2 errors. Giving up');
           expect(messages[0].location.file).toBeDefined();
           expect(messages[0].location.file).toMatch(/.+multi_errors\.pp$/);
           expect(messages[0].location.position.length).toBeDefined();
-          expect(messages[0].location.position).toEqual([[2, 19], [2, 20]]);
+          expect(messages[0].location.position).toEqual([[2, 0], [2, 1]]);
           expect(messages[1].severity).toBeDefined();
           expect(messages[1].severity).toEqual('error');
           expect(messages[1].excerpt).toBeDefined();
-          expect(messages[1].excerpt).toEqual("Illegal variable name, The given name '' does not conform to the naming rule /^((::)?[a-z]\\w*)*((::)?[a-z_]\\w*)$/");
+          expect(messages[1].excerpt).toEqual('This Variable has no effect. A value was produced and then forgotten (one or more preceding expressions may have the wrong form)');
           expect(messages[1].location.file).toBeDefined();
           expect(messages[1].location.file).toMatch(/.+multi_errors\.pp$/);
-          expect(messages[1].location.position).toBeDefined();
+          expect(messages[1].location.position.length).toBeDefined();
           expect(messages[1].location.position).toEqual([[2, 19], [2, 20]]);
+          expect(messages[2].severity).toBeDefined();
+          expect(messages[2].severity).toEqual('error');
+          expect(messages[2].excerpt).toBeDefined();
+          expect(messages[2].excerpt).toEqual("Illegal variable name, The given name '' does not conform to the naming rule /^((::)?[a-z]\\w*)*((::)?[a-z_]\\w*)$/");
+          expect(messages[2].location.file).toBeDefined();
+          expect(messages[2].location.file).toMatch(/.+multi_errors\.pp$/);
+          expect(messages[2].location.position).toBeDefined();
+          expect(messages[2].location.position).toEqual([[2, 19], [2, 20]]);
         });
       });
     });
@@ -118,7 +126,7 @@ describe('The Puppet Parser provider for Linter', () => {
           expect(messages[0].severity).toBeDefined();
           expect(messages[0].severity).toEqual('error');
           expect(messages[0].excerpt).toBeDefined();
-          expect(messages[0].excerpt).toEqual("Syntax error at end of input.");
+          expect(messages[0].excerpt).toEqual("Syntax error at end of input");
           expect(messages[0].location.position.length).toBeDefined();
           expect(messages[0].location.position).toEqual([[3, 0], [3, 1]]);
           expect(messages[0].location.file).toBeDefined();
