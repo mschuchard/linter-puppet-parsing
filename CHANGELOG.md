@@ -1,6 +1,8 @@
-### (Next)
+### 1.2.0 (Next)
 - Updates to Linter API usage.
 - Remove arbitrary Puppet parser arguments from config options.
+- Parse validator JSON output when possible.
+- Capture all relevant messages from parser output.
 
 ### 1.1.3
 - Display error marker at last line of file for EOF errors.
