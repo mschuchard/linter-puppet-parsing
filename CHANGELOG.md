@@ -1,4 +1,4 @@
-### 1.2.0 (Next)
+### 1.2.0
 - Updates to Linter API usage.
 - Remove arbitrary Puppet parser arguments from config options.
 - Parse validator JSON output when possible.

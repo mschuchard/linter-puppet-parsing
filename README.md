@@ -11,6 +11,5 @@ Linter-Puppet-Parsing aims to provide functional and robust `puppet parser valid
 The Puppet or Puppet Enterprise client software is required to be installed (preferably from a package or a gem) before using this. Version 4 or higher of Puppet is required, and version 6.x or 7.x is recommended. The Linter and Language-Puppet Atom packages are also required.
 
 ### Usage
-- Avoid specifying arguments or flags (e.g. `--debug`) that greatly affect the formatting of the parser output.  These will cause issues.
 - The Puppet parser only throws errors for the first line of errors it encounters in a manifest, so this linter only displays one line of errors at a time. However, multiple lines of warnings will be displayed.
 - On Windows, you have to specify the absolute path to the Puppet executable, even if it is in your environment `PATH` (e.g. `C:\Program Files\Puppet Labs\Puppet\bin\puppet`).
