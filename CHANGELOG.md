@@ -1,3 +1,6 @@
+### 1.2.1 (Next)
+- Puppet 4 support deprecated.
+
 ### 1.2.0
 - Updates to Linter API usage.
 - Remove arbitrary Puppet parser arguments from config options.
