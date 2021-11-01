@@ -8,7 +8,7 @@ Image displays example of simultaneous use of Linter-Puppet-Parsing with Linter-
 Linter-Puppet-Parsing aims to provide functional and robust `puppet parser validate` linting functionality in Atom.
 
 ### Installation
-The Puppet or Puppet Enterprise client software is required to be installed (preferably from a package or a gem) before using this. Version 4 or higher of Puppet is required, and version 6.x or 7.x is recommended. The Linter and Language-Puppet Atom packages are also required.
+The Puppet or Puppet Enterprise client software is required to be installed before using this. A version of Puppet in the range from 4 to 7 is required. While version 4 is theoretically supported, it is no longer available for testing, and therefore compatibility cannot be guaranteed. The Linter and Language-Puppet Atom packages are also required.
 
 ### Usage
 - The Puppet parser only throws errors for the first line of errors it encounters in a manifest, so this linter only displays one line of errors at a time. However, multiple lines of warnings will be displayed.
