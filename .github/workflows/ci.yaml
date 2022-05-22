@@ -9,7 +9,7 @@ on:
 
 env:
   CI: true
-  PACKAGES: 'language-ruby'
+  PACKAGES: 'language-puppet'
 
 jobs:
   lint-and-test:
@@ -19,8 +19,8 @@ jobs:
         channel: [stable]
         puppet_version:
         - '~> 5.5.22'
-        - '~> 6.26.0'
-        - '~> 7.14.0'
+        - '~> 6.27.0'
+        - '~> 7.16.0'
     runs-on: ${{ matrix.os }}
     steps:
     - name: checkout

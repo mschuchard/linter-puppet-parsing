@@ -3,9 +3,12 @@ version: 2.1
 
 jobs:
   test:
+    parameters:
+      puppet_version:
+        type: string
     environment:
       DISPLAY: ':99'
-      APM_TEST_PACKAGES: 'language-ruby'
+      APM_TEST_PACKAGES: 'language-puppet'
     working_directory: /tmp/project
     machine:
       image: ubuntu-2004:current
@@ -42,5 +45,5 @@ workflows:
           parameters:
             puppet_version:
             - '~> 5.5.22'
-            - '~> 6.26.0'
-            - '~> 7.14.0'
+            - '~> 6.27.0'
+            - '~> 7.16.0'
