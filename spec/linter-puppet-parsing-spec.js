@@ -232,4 +232,50 @@ describe('The Puppet Parser provider for Linter', () => {
       );
     });
   });
+
+  describe('checks a plan file with an error and', () => {
+    let editor = null;
+    const badFile = path.join(__dirname, 'fixtures', 'plan_error.pp');
+    beforeEach(() => {
+      waitsForPromise(() =>
+        atom.workspace.open(badFile).then(openEditor => {
+          editor = openEditor;
+        })
+      );
+    });
+
+    it('finds only one message', () => {
+      waitsForPromise(() =>
+        lint(editor).then(messages => {
+          expect(messages.length).toEqual(1);
+        })
+      );
+    });
+
+    it('verifies the message', () => {
+      waitsForPromise(() => {
+        return lint(editor).then(messages => {
+          expect(messages[0].severity).toBeDefined();
+          expect(messages[0].severity).toEqual('error');
+          expect(messages[0].excerpt).toBeDefined();
+          expect(messages[0].excerpt).toEqual("Syntax error at ')'");
+          expect(messages[0].location.file).toBeDefined();
+          expect(messages[0].location.file).toMatch(/.+plan_error\.pp$/);
+          expect(messages[0].location.position).toBeDefined();
+          expect(messages[0].location.position).toEqual([[3, 47], [3, 48]]);
+        });
+      });
+    });
+  });
+
+  it('finds nothing wrong with a valid plan file', () => {
+    waitsForPromise(() => {
+      const goodFile = path.join(__dirname, 'fixtures', 'plan_clean.pp');
+      return atom.workspace.open(goodFile).then(editor =>
+        lint(editor).then(messages => {
+          expect(messages.length).toEqual(0);
+        })
+      );
+    });
+  });
 });
