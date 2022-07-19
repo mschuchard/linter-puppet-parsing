@@ -1,5 +1,6 @@
 ### 1.2.1 (Next)
 - Puppet 4 support deprecated.
+- Detect plans and syntax check differently and correctly.
 
 ### 1.2.0
 - Updates to Linter API usage.
