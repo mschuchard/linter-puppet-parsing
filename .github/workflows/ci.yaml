@@ -19,8 +19,8 @@ jobs:
         channel: [stable]
         puppet_version:
         - '~> 5.5.22'
-        - '~> 6.27.0'
-        - '~> 7.16.0'
+        - '~> 6.27.1'
+        - '~> 7.17.0'
     runs-on: ${{ matrix.os }}
     steps:
     - name: checkout
@@ -40,8 +40,6 @@ jobs:
       run: apm install && apm install ${PACKAGES} && apm clean
     - name: lint source and spec
       run: ./node_modules/.bin/eslint lib spec || true
-    - name: install some pre-requisite packages
-      run: sudo apt-get update && sudo apt-get -yq install curl xvfb libgbm-dev
     - name: install puppet
       run: gem install --no-document -v "${{ matrix.puppet_version }}" puppet
     - name: run tests
