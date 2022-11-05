@@ -1,4 +1,4 @@
-### 1.2.1 (Next)
+### 1.2.1
 - Puppet 4 support deprecated.
 - Detect plans and syntax check differently and correctly.
 
