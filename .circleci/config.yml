@@ -11,7 +11,7 @@ jobs:
       APM_TEST_PACKAGES: 'language-puppet'
     working_directory: /tmp/project
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     steps:
     - checkout
     - restore_cache:
@@ -45,5 +45,5 @@ workflows:
           parameters:
             puppet_version:
             - '~> 5.5.22'
-            - '~> 6.27.1'
-            - '~> 7.17.0'
+            - '~> 6.28.0'
+            - '~> 7.19.0'

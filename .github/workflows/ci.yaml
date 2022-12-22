@@ -4,8 +4,12 @@ name: ci
 on:
   push:
     branches: [master]
+    paths:
+    - '**.js'
   pull_request:
     branches: [master]
+    paths:
+    - '**.js'
 
 env:
   CI: true
@@ -15,12 +19,12 @@ jobs:
   lint-and-test:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-22.04]
         channel: [stable]
         puppet_version:
         - '~> 5.5.22'
-        - '~> 6.27.1'
-        - '~> 7.17.0'
+        - '~> 6.28.0'
+        - '~> 7.19.0'
     runs-on: ${{ matrix.os }}
     steps:
     - name: checkout
