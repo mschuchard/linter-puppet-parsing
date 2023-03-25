@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04]
-        channel: [stable]
+        channel: [beta]
         puppet_version:
         - '~> 5.5.22'
         - '~> 6.28.0'
@@ -28,8 +28,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - name: checkout
-      uses: actions/checkout@v2
-    - uses: UziTech/action-setup-atom@v2
+      uses: actions/checkout@v3
+    - uses: UziTech/action-setup-atom@v3
       with:
         version: ${{ matrix.channel }}
     - uses: ruby/setup-ruby@v1
