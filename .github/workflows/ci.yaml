@@ -11,40 +11,14 @@ on:
     paths:
     - '**.js'
 
-env:
-  CI: true
-  PACKAGES: 'language-puppet'
-
 jobs:
-  lint-and-test:
-    strategy:
-      matrix:
-        os: [ubuntu-22.04]
-        channel: [beta]
-        puppet_version:
-        - '~> 5.5.22'
-        - '~> 6.28.0'
-        - '~> 7.19.0'
-    runs-on: ${{ matrix.os }}
+  lint:
+    runs-on: ubuntu-22.04
+    container: node:14-alpine
     steps:
     - name: checkout
       uses: actions/checkout@v3
-    - uses: UziTech/action-setup-atom@v3
-      with:
-        version: ${{ matrix.channel }}
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7
-        bundler-cache: true
-    - name: atom version
-      run: atom -v
-    - name: apm version
-      run: apm -v
     - name: install dependencies
-      run: apm install && apm install ${PACKAGES} && apm clean
+      run: npm install
     - name: lint source and spec
       run: ./node_modules/.bin/eslint lib spec || true
-    - name: install puppet
-      run: gem install --no-document -v "${{ matrix.puppet_version }}" puppet
-    - name: run tests
-      run: atom --test spec

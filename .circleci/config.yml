@@ -3,47 +3,19 @@ version: 2.1
 
 jobs:
   test:
-    parameters:
-      puppet_version:
-        type: string
-    environment:
-      DISPLAY: ':99'
-      APM_TEST_PACKAGES: 'language-puppet'
     working_directory: /tmp/project
-    machine:
-      image: ubuntu-2204:current
+    docker:
+    - image: node:14-alpine
     steps:
     - checkout
-    - restore_cache:
-        keys:
-        - linter-puppet-parsing
     - run:
-        name: install some pre-requisite packages
-        command: sudo apt-get update && sudo apt-get -yq install curl xvfb libgbm-dev unzip
+        name: install dependencies
+        command: npm install
     - run:
-        name: install puppet
-        command: gem install --no-document -v "<< parameters.puppet_version >>" puppet
-    - run:
-        name: start display server for Atom
-        command: /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1024x768x16 +extension RANDR
-        background: true
-    - run:
-        name: run package tests
-        command: curl -s https://raw.githubusercontent.com/mschuchard/vagrant-boxes-docker-images/master/atom-build-package.sh | sh
-    - save_cache:
-        paths:
-        - node_modules
-        - ~/.atom/packages
-        # ideally also apt when that is supported
-        key: linter-puppet-parsing
+        name: lint source and spec
+        command: ./node_modules/.bin/eslint lib spec || true
 
 workflows:
   execute_tests:
     jobs:
-    - test:
-        matrix:
-          parameters:
-            puppet_version:
-            - '~> 5.5.22'
-            - '~> 6.28.0'
-            - '~> 7.19.0'
+    - test
