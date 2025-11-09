@@ -1,3 +1,6 @@
+### 1.2.2 (Next)
+- Improve package activation.
+
 ### 1.2.1
 - Puppet 4 support deprecated.
 - Detect plans and syntax check differently and correctly.
