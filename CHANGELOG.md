@@ -2,6 +2,7 @@
 - Improve package activation.
 - Surface non-syntax errors from the parser output.
 - Surface internal Puppet errors.
+- Improve plan manifest detection.
 
 ### 1.2.1
 - Puppet 4 support deprecated.

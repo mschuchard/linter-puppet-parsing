@@ -8,7 +8,7 @@ Linter-Puppet-Parsing aims to provide functional and robust `puppet parser valid
 This package is now in maintenance mode. All feature requests and bug reports in the Github repository issue tracker will receive a response, and possibly also be implemented (especially bug fixes). However, active development on this package has ceased.
 
 ### Installation
-The Puppet or Puppet Enterprise client software is required to be installed before using this. A version of Puppet in the range from 4 to 8 is required. While version 4 is theoretically supported, it is no longer available for testing, and therefore compatibility cannot be guaranteed. The Atom-IDE-UI and Language-Puppet packages are also required.
+The Puppet or Puppet Enterprise client software is required to be installed before using this. A version of Puppet in the range from 5 to 8 is required. While version 4 is theoretically supported, it is no longer available for testing, and therefore compatibility cannot be guaranteed. The Atom-IDE-UI and Language-Puppet packages are also required.
 
 All testing is performed with the latest stable version of Pulsar. Any version of Atom or any pre-release version of Pulsar is not supported.
 
