@@ -1,5 +1,6 @@
 ### 1.2.2 (Next)
 - Improve package activation.
+- Surface non-syntax errors from the parser output.
 
 ### 1.2.1
 - Puppet 4 support deprecated.
