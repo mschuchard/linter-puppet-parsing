@@ -1,4 +1,4 @@
-### 1.2.2 (Next)
+### 1.2.2
 - Improve package activation.
 - Surface non-syntax errors from the parser output.
 - Surface internal Puppet errors.
